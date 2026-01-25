@@ -1,13 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Building, Code, Heart, Home, Leaf, Plane, Tv, Hammer } from "lucide-react";
 import Link from "next/link";
 
 export default function VenturesPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
 
   const ventures = [
     {
@@ -96,19 +93,19 @@ export default function VenturesPage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center overflow-hidden bg-dark-900 pt-24 sm:pt-32"
       >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute left-0 top-1/3 h-[500px] w-[500px] rounded-full bg-primary-500/10 blur-[150px]" />
+          <div className="absolute left-0 top-1/3 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-primary-500/10 blur-[150px]" />
           <div className="absolute right-0 bottom-1/3 h-[400px] w-[400px] rounded-full bg-accent-500/10 blur-[120px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
@@ -151,11 +148,10 @@ export default function VenturesPage() {
                     <venture.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className={`rounded-full px-2 sm:px-3 py-1 text-xs font-medium ${
-                      venture.status === "Active" 
-                        ? "bg-green-500/10 text-green-400" 
-                        : "bg-yellow-500/10 text-yellow-400"
-                    }`}>
+                    <span className={`rounded-full px-2 sm:px-3 py-1 text-xs font-medium ${venture.status === "Active"
+                      ? "bg-green-500/10 text-green-400"
+                      : "bg-yellow-500/10 text-yellow-400"
+                      }`}>
                       {venture.status}
                     </span>
                   </div>

@@ -1,12 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { MapPin, Wifi, Truck, Store } from "lucide-react";
 
 export function RegionalCommitmentSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const initiatives = [
     {
@@ -28,13 +26,12 @@ export function RegionalCommitmentSection() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-800 section-padding"
     >
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900" />
-        
+
         {/* Map-like dotted pattern */}
         <div className="absolute inset-0 opacity-10">
           <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +52,8 @@ export function RegionalCommitmentSection() {
         <div className="mb-16 text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-sm font-medium uppercase tracking-wider text-primary-400"
           >
@@ -63,7 +61,8 @@ export function RegionalCommitmentSection() {
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="section-title mt-4"
           >
@@ -72,7 +71,8 @@ export function RegionalCommitmentSection() {
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="section-subtitle mx-auto mt-6 text-center"
           >
@@ -88,7 +88,8 @@ export function RegionalCommitmentSection() {
           {/* Region Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-1"
           >
@@ -102,10 +103,10 @@ export function RegionalCommitmentSection() {
                   <p className="text-sm text-white/50">South Bengal, Bangladesh</p>
                 </div>
               </div>
-              
+
               <p className="text-white/60 leading-relaxed mb-6">
-                A strategic focus on developing the economic potential of 
-                Bangladesh's southern region through targeted interventions 
+                A strategic focus on developing the economic potential of
+                Bangladesh's southern region through targeted interventions
                 in agriculture, trade, and digital infrastructure.
               </p>
 
@@ -133,7 +134,8 @@ export function RegionalCommitmentSection() {
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                 className="group relative overflow-hidden rounded-2xl border border-white/5 bg-dark-700/30 p-6 transition-all hover:border-green-500/20 hover:bg-dark-700/50"
               >

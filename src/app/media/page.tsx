@@ -1,13 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, BookOpen, ExternalLink, FileText, Mic, Newspaper, PlayCircle, Radio, Video, Youtube } from "lucide-react";
 import Link from "next/link";
 
 export default function MediaPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
 
   const contentChannels = [
     {
@@ -92,19 +89,19 @@ export default function MediaPage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center overflow-hidden bg-dark-900 pt-24 sm:pt-32"
       >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute right-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-rose-500/10 blur-[150px]" />
+          <div className="absolute right-1/4 top-1/4 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-rose-500/10 blur-[150px]" />
           <div className="absolute left-1/4 bottom-1/4 h-[400px] w-[400px] rounded-full bg-primary-500/10 blur-[120px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-xs sm:text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -191,7 +188,7 @@ export default function MediaPage() {
       <section className="relative bg-dark-900 section-padding">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
+          <div className="absolute left-0 top-1/2 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl">

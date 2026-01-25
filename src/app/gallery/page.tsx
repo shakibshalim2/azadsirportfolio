@@ -1,13 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, Play, Image as ImageIcon, Video, Award, Users, Briefcase } from "lucide-react";
 import Link from "next/link";
 
 export default function GalleryPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState("All");
 
@@ -125,15 +123,14 @@ export default function GalleryPage() {
     },
   ];
 
-  const filteredItems = activeFilter === "All" 
-    ? galleryItems 
+  const filteredItems = activeFilter === "All"
+    ? galleryItems
     : galleryItems.filter(item => item.category === activeFilter);
 
   return (
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center overflow-hidden bg-dark-900 pt-24 sm:pt-32"
       >
         <div className="absolute inset-0">
@@ -145,7 +142,8 @@ export default function GalleryPage() {
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-xs sm:text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -175,11 +173,10 @@ export default function GalleryPage() {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`rounded-full px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-medium transition-all ${
-                  activeFilter === filter
+                className={`rounded-full px-3 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm font-medium transition-all ${activeFilter === filter
                     ? "bg-primary-500 text-white"
                     : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
-                }`}
+                  }`}
               >
                 {filter}
               </button>

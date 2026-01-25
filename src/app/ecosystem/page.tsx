@@ -1,13 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Building2, Factory, Globe, Home, Leaf, MapPin, Truck, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function EcosystemPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
 
   const focusAreas = [
     {
@@ -67,12 +64,11 @@ export default function EcosystemPage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[70vh] flex items-center overflow-hidden bg-dark-900 pt-32"
       >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute right-1/4 top-1/3 h-[500px] w-[500px] rounded-full bg-green-500/10 blur-[150px]" />
+          <div className="absolute right-1/4 top-1/3 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-green-500/10 blur-[150px]" />
           <div className="absolute left-1/4 bottom-1/3 h-[400px] w-[400px] rounded-full bg-primary-500/10 blur-[120px]" />
         </div>
 
@@ -80,7 +76,8 @@ export default function EcosystemPage() {
           <div className="grid gap-8 lg:gap-16 lg:grid-cols-2 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
               <span className="text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -96,7 +93,8 @@ export default function EcosystemPage() {
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
@@ -115,7 +113,8 @@ export default function EcosystemPage() {
                 {/* Floating labels */}
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={isHeroInView ? { opacity: 1 } : {}}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.5, duration: 0.6 }}
                   className="absolute left-0 top-1/4 glass rounded-lg px-3 py-2"
                 >
@@ -123,7 +122,8 @@ export default function EcosystemPage() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={isHeroInView ? { opacity: 1 } : {}}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.6, duration: 0.6 }}
                   className="absolute right-0 top-1/3 glass rounded-lg px-3 py-2"
                 >
@@ -131,7 +131,8 @@ export default function EcosystemPage() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={isHeroInView ? { opacity: 1 } : {}}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.7, duration: 0.6 }}
                   className="absolute left-1/4 bottom-[10%] glass rounded-lg px-3 py-2"
                 >
@@ -139,7 +140,8 @@ export default function EcosystemPage() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0 }}
-                  animate={isHeroInView ? { opacity: 1 } : {}}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.8, duration: 0.6 }}
                   className="absolute right-1/4 top-[5%] glass rounded-lg px-3 py-2"
                 >
@@ -204,7 +206,7 @@ export default function EcosystemPage() {
       <section className="relative bg-dark-900 section-padding">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
+          <div className="absolute left-0 top-1/2 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl">
@@ -297,7 +299,7 @@ export default function EcosystemPage() {
                 </p>
               </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-6">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div className="text-center">
                   <p className="text-3xl font-bold text-gradient">6+</p>
                   <p className="mt-1 text-sm text-white/60">Districts</p>

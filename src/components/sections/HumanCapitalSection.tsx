@@ -1,13 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { GraduationCap, Users, Lightbulb, Rocket } from "lucide-react";
 import Link from "next/link";
 
 export function HumanCapitalSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const areas = [
     {
@@ -34,13 +32,12 @@ export function HumanCapitalSection() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-900 section-padding"
     >
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-800 to-dark-900" />
-        <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
+        <div className="absolute left-0 top-1/2 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -48,7 +45,8 @@ export function HumanCapitalSection() {
           {/* Left Column - Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="relative"
           >
@@ -113,7 +111,8 @@ export function HumanCapitalSection() {
                   <motion.div
                     key={area.title}
                     initial={{ opacity: 0, scale: 0.8 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
                     transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
                     className={`absolute ${positions[index]} glass rounded-xl p-3 max-w-[150px]`}
                   >
@@ -130,7 +129,8 @@ export function HumanCapitalSection() {
           {/* Right Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -155,9 +155,10 @@ export function HumanCapitalSection() {
             {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-10 grid grid-cols-2 gap-6"
+              className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6"
             >
               <div className="glass rounded-xl p-5">
                 <p className="text-3xl font-bold text-gradient">1000+</p>
@@ -172,7 +173,8 @@ export function HumanCapitalSection() {
             {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.6, duration: 0.6 }}
               className="mt-8"
             >

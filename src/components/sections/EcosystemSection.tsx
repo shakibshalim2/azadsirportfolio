@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Building,
   Heart,
@@ -56,19 +56,15 @@ const ecosystems = [
 ];
 
 export function EcosystemSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-900 section-padding"
     >
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-grid opacity-20" />
-        <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-primary-500/5 blur-[150px]" />
+        <div className="absolute bottom-0 right-0 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-primary-500/5 blur-[150px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -76,7 +72,8 @@ export function EcosystemSection() {
         <div className="mb-10 sm:mb-16 max-w-3xl">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-xs sm:text-sm font-medium uppercase tracking-wider text-primary-400"
           >
@@ -84,7 +81,8 @@ export function EcosystemSection() {
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="section-title mt-3 sm:mt-4"
           >
@@ -92,7 +90,8 @@ export function EcosystemSection() {
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="section-subtitle mt-4 sm:mt-6"
           >
@@ -104,14 +103,14 @@ export function EcosystemSection() {
 
         {/* Ecosystem Cards */}
         <div
-          ref={cardsRef}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {ecosystems.map((eco, index) => (
             <Link key={eco.title} href={eco.href}>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
                 className="group relative h-full overflow-hidden rounded-2xl border border-white/5 bg-dark-800/50 p-8 transition-all duration-500 hover:border-white/10 hover:bg-dark-700/50"
@@ -149,7 +148,8 @@ export function EcosystemSection() {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-12 text-center"
         >

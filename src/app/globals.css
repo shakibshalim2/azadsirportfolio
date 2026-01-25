@@ -42,13 +42,13 @@ html.lenis {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
+  background: linear-gradient(to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb)));
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @layer base {
@@ -108,12 +108,15 @@ body {
   .animation-delay-200 {
     animation-delay: 200ms;
   }
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
+
   .animation-delay-600 {
     animation-delay: 600ms;
   }
+
   .animation-delay-800 {
     animation-delay: 800ms;
   }
@@ -196,6 +199,7 @@ body {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -216,9 +220,9 @@ body {
 
 /* Grid Background */
 .bg-grid {
-  background-image: 
-    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -233,10 +237,16 @@ body {
   html {
     font-size: 14px;
   }
-  
+
+  /* Reduce blur on mobile for better performance */
   .glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Reduce blur intensity on background effects */
+  [class*="blur-["] {
+    filter: blur(50px) !important;
   }
 }
 
@@ -245,11 +255,29 @@ body {
   ::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   /* Hide custom cursor on touch devices */
   .cursor-dot,
   .cursor-outline {
     display: none !important;
+  }
+
+  /* Optimize animations on mobile */
+  .float-element {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

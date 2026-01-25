@@ -21,6 +21,15 @@ export function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
+    // Skip heavy GSAP animations on mobile to prevent scroll jank
+    const isMobile = window.matchMedia("(max-width: 768px)").matches || window.matchMedia("(pointer: coarse)").matches;
+
+    if (isMobile) {
+      // On mobile, just make elements visible without animation
+      gsap.set(".hero-line, .hero-subtext, .hero-cta", { opacity: 1, y: 0 });
+      return;
+    }
+
     const ctx = gsap.context(() => {
       // Animate text elements
       gsap.from(".hero-line", {
@@ -48,7 +57,7 @@ export function HeroSection() {
         ease: "power2.out",
       });
 
-      // Floating elements
+      // Floating elements - only on desktop
       gsap.to(".float-element", {
         y: -20,
         duration: 3,
@@ -72,7 +81,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="absolute left-1/4 top-1/4 h-[300px] sm:h-[500px] w-[300px] sm:w-[500px] rounded-full bg-primary-500/10 blur-[100px] sm:blur-[150px]" />
         <div className="absolute bottom-1/4 right-1/4 h-[250px] sm:h-[400px] w-[250px] sm:w-[400px] rounded-full bg-accent-500/10 blur-[80px] sm:blur-[120px]" />
-        
+
         {/* Floating geometric elements - hidden on mobile for performance */}
         <div className="float-element absolute left-[15%] top-[20%] h-12 w-12 sm:h-20 sm:w-20 rotate-45 rounded-xl sm:rounded-2xl border border-primary-500/20 bg-primary-500/5 hidden sm:block" />
         <div className="float-element absolute right-[20%] top-[30%] h-10 w-10 sm:h-16 sm:w-16 rounded-full border border-accent-500/20 bg-accent-500/5 hidden sm:block" />

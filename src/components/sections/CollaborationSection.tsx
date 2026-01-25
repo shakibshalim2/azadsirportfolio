@@ -1,13 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Handshake } from "lucide-react";
 import Link from "next/link";
 
 export function CollaborationSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const collaborationAreas = [
     "Policy & Development Projects",
@@ -19,7 +17,6 @@ export function CollaborationSection() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-900 section-padding"
     >
       {/* Background */}
@@ -32,7 +29,8 @@ export function CollaborationSection() {
         {/* Icon */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-6 sm:mb-8 flex justify-center"
         >
@@ -44,7 +42,8 @@ export function CollaborationSection() {
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-white"
         >
@@ -55,7 +54,8 @@ export function CollaborationSection() {
         {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-4 sm:mt-6 max-w-2xl text-sm sm:text-base md:text-lg text-white/60 leading-relaxed"
         >
@@ -66,7 +66,8 @@ export function CollaborationSection() {
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg font-medium text-white"
         >
@@ -76,7 +77,8 @@ export function CollaborationSection() {
         {/* Collaboration Areas */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-6 sm:mt-10 flex flex-wrap justify-center gap-2 sm:gap-3"
         >
@@ -93,7 +95,8 @@ export function CollaborationSection() {
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row"
         >
@@ -121,7 +124,8 @@ export function CollaborationSection() {
         {/* Decorative Line */}
         <motion.div
           initial={{ scaleX: 0 }}
-          animate={isInView ? { scaleX: 1 } : {}}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6 }}
           className="mx-auto mt-16 h-px w-60 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"
         />

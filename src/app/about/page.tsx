@@ -1,14 +1,11 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Award, Briefcase, GraduationCap, Heart, Target, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true, amount: 0.2 });
 
   const coreRoles = [
     {
@@ -65,12 +62,11 @@ export default function AboutPage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[70vh] flex items-center overflow-hidden bg-dark-900 pt-32"
       >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute right-0 top-1/4 h-[500px] w-[500px] rounded-full bg-primary-500/10 blur-[150px]" />
+          <div className="absolute right-0 top-1/4 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-primary-500/10 blur-[150px]" />
           <div className="absolute left-0 bottom-1/4 h-[400px] w-[400px] rounded-full bg-accent-500/10 blur-[120px]" />
         </div>
 
@@ -78,7 +74,8 @@ export default function AboutPage() {
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
             >
               <span className="text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -101,16 +98,18 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative mx-auto max-w-sm lg:max-w-none"
+              className="relative mx-auto w-full max-w-sm lg:max-w-none"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl sm:rounded-3xl bg-dark-800">
                 <Image
-                  src="/image.png"
+                  src="/about-profile.png"
                   alt="Shamim Azad"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top"
                   priority
                 />
@@ -118,12 +117,13 @@ export default function AboutPage() {
                 <div className="absolute inset-2 sm:inset-4 rounded-xl sm:rounded-2xl border border-white/10" />
               </div>
 
-              {/* Floating badges */}
+              {/* Floating badges - outside overflow container */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
-                animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="absolute right-0 top-4 sm:top-8 glass rounded-lg sm:rounded-xl p-2 sm:p-4 sm:-right-4 md:-right-8"
+                className="absolute right-0 top-4 sm:top-8 glass rounded-lg sm:rounded-xl p-2 sm:p-4 sm:-right-2 md:-right-6 z-10"
               >
                 <p className="text-lg sm:text-2xl font-bold text-white">20+</p>
                 <p className="text-[10px] sm:text-xs text-white/60">Years Experience</p>
@@ -131,9 +131,10 @@ export default function AboutPage() {
 
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
-                animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="absolute left-0 bottom-8 sm:bottom-12 glass rounded-lg sm:rounded-xl p-2 sm:p-4 sm:-left-4 md:-left-8"
+                className="absolute left-0 bottom-8 sm:bottom-12 glass rounded-lg sm:rounded-xl p-2 sm:p-4 sm:-left-2 md:-left-6 z-10"
               >
                 <p className="text-lg sm:text-2xl font-bold text-gradient">8+</p>
                 <p className="text-[10px] sm:text-xs text-white/60">Active Ventures</p>
@@ -190,7 +191,7 @@ export default function AboutPage() {
       <section className="relative bg-dark-900 section-padding">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
+          <div className="absolute left-1/2 top-1/2 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500/5 blur-[150px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl">
@@ -221,9 +222,8 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative flex items-center gap-8 ${
-                    index % 2 === 0 ? "md:flex-row-reverse" : ""
-                  }`}
+                  className={`relative flex items-center gap-8 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                    }`}
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-8 flex h-4 w-4 items-center justify-center rounded-full bg-primary-500 md:left-1/2 md:-translate-x-1/2">

@@ -1,12 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { TrendingUp, Users, Building2, Smartphone } from "lucide-react";
 
 export function NationalContextSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const stats = [
     {
@@ -37,7 +35,6 @@ export function NationalContextSection() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-800 section-padding"
     >
       {/* Background */}
@@ -51,7 +48,8 @@ export function NationalContextSection() {
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -74,7 +72,8 @@ export function NationalContextSection() {
               </p>
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.8 }}
                 className="text-xl font-medium text-white"
               >
@@ -89,7 +88,8 @@ export function NationalContextSection() {
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 className="glass group rounded-2xl p-6 transition-all duration-300 hover:bg-white/10"
               >

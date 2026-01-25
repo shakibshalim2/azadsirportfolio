@@ -46,11 +46,10 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
-          isScrolled
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${isScrolled
             ? "bg-dark-900/90 backdrop-blur-xl border-b border-white/5"
             : "bg-transparent"
-        }`}
+          }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           {/* Logo */}
@@ -61,7 +60,7 @@ export function Navbar() {
             >
               <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-primary-500/30">
                 <Image
-                  src="/image.png"
+                  src="/navbar-profile.png"
                   alt="Shamim Azad"
                   fill
                   className="object-cover object-top"

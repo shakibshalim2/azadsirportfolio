@@ -1,13 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Award, BookOpen, Building, GraduationCap, Lightbulb, MessageSquare, Mic, Monitor, Presentation, Rocket, Target, Users, Video, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function TrainingPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
 
   const trainingAreas = [
     {
@@ -76,12 +73,11 @@ export default function TrainingPage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[70vh] flex items-center overflow-hidden bg-dark-900 pt-32"
       >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-accent-500/10 blur-[150px]" />
+          <div className="absolute left-1/4 top-1/4 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-accent-500/10 blur-[150px]" />
           <div className="absolute right-1/4 bottom-1/4 h-[400px] w-[400px] rounded-full bg-primary-500/10 blur-[120px]" />
         </div>
 
@@ -89,7 +85,8 @@ export default function TrainingPage() {
           <div className="grid gap-8 lg:gap-16 lg:grid-cols-2 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
               <span className="text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -129,15 +126,17 @@ export default function TrainingPage() {
             {/* Stats Grid */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
-              animate={isHeroInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
                   className="glass rounded-2xl p-6 text-center"
                 >
@@ -219,7 +218,7 @@ export default function TrainingPage() {
       <section className="relative bg-dark-900 section-padding">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-accent-500/5 blur-[150px]" />
+          <div className="absolute right-0 top-1/3 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-accent-500/5 blur-[150px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl">

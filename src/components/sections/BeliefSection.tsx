@@ -1,16 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 
 export function BeliefSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-800 py-20 sm:py-28 md:py-32 lg:py-40"
     >
       {/* Background */}
@@ -23,7 +20,8 @@ export function BeliefSection() {
         {/* Quote Icon */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mb-6 sm:mb-8 flex justify-center"
         >
@@ -35,7 +33,8 @@ export function BeliefSection() {
         {/* Main Quote */}
         <motion.blockquote
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-display font-bold leading-relaxed text-white">
@@ -49,7 +48,8 @@ export function BeliefSection() {
         {/* Supporting Text */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mx-auto mt-6 sm:mt-10 max-w-2xl text-sm sm:text-base md:text-lg text-white/60 leading-relaxed"
         >
@@ -60,7 +60,8 @@ export function BeliefSection() {
         {/* Decorative Line */}
         <motion.div
           initial={{ scaleX: 0 }}
-          animate={isInView ? { scaleX: 1 } : {}}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.6 }}
           className="mx-auto mt-12 h-px w-40 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"
         />
@@ -68,7 +69,8 @@ export function BeliefSection() {
         {/* Attribution */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-6 text-sm font-medium uppercase tracking-wider text-white/40"
         >

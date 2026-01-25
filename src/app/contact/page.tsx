@@ -1,15 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, Send, MapPin, Mail, Phone, Clock, Linkedin, Youtube, Twitter, MessageCircle, Building, Users, Lightbulb, GraduationCap, CheckCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
-  const isFormInView = useInView(formRef, { once: true });
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -98,7 +94,6 @@ export default function ContactPage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[50vh] sm:min-h-[60vh] flex items-center overflow-hidden bg-dark-900 pt-24 sm:pt-32"
       >
         <div className="absolute inset-0">
@@ -110,7 +105,8 @@ export default function ContactPage() {
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-xs sm:text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -175,7 +171,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form & Info */}
-      <section ref={formRef} className="relative bg-dark-900 section-padding">
+      <section className="relative bg-dark-900 section-padding">
         <div className="absolute inset-0">
           <div className="absolute left-0 bottom-0 h-[500px] w-[500px] rounded-full bg-primary-500/5 blur-[150px]" />
         </div>
@@ -185,7 +181,8 @@ export default function ContactPage() {
             {/* Contact Info - Left Side */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              animate={isFormInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
@@ -193,7 +190,7 @@ export default function ContactPage() {
                 Get in Touch
               </h2>
               <p className="mt-4 text-white/60 leading-relaxed">
-                I value genuine connections and meaningful conversations. 
+                I value genuine connections and meaningful conversations.
                 If you have a clear purpose for reaching out, I'd love to hear from you.
               </p>
 
@@ -251,7 +248,8 @@ export default function ContactPage() {
             {/* Contact Form - Right Side */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
-              animate={isFormInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3"
             >

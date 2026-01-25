@@ -9,6 +9,11 @@ export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Don't initialize on mobile/touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
@@ -85,11 +90,10 @@ export function CustomCursor() {
         }}
       >
         <div
-          className={`h-10 w-10 rounded-full border transition-colors duration-200 ${
-            isHovering
+          className={`h-10 w-10 rounded-full border transition-colors duration-200 ${isHovering
               ? "border-primary-400 bg-primary-400/10"
               : "border-white/20"
-          }`}
+            }`}
         />
       </motion.div>
     </>

@@ -1,13 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Building2, Cloud, Cpu, Database, Globe, Lock, Network, Server, Smartphone, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function DigitalInfrastructurePage() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true });
 
   const strategicDomains = [
     {
@@ -63,13 +60,12 @@ export default function DigitalInfrastructurePage() {
     <>
       {/* Hero Section */}
       <section
-        ref={heroRef}
         className="relative min-h-[60vh] sm:min-h-[80vh] flex items-center overflow-hidden bg-dark-900 pt-24 sm:pt-32"
       >
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-dark-900 to-accent-900/20" />
-          
+
           {/* Animated circuit lines */}
           <svg className="absolute inset-0 h-full w-full opacity-20">
             <defs>
@@ -94,14 +90,15 @@ export default function DigitalInfrastructurePage() {
             />
           </svg>
 
-          <div className="absolute left-1/3 top-1/4 h-[500px] w-[500px] rounded-full bg-primary-500/10 blur-[150px]" />
+          <div className="absolute left-1/3 top-1/4 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-primary-500/10 blur-[150px]" />
           <div className="absolute right-1/4 bottom-1/4 h-[400px] w-[400px] rounded-full bg-accent-500/10 blur-[120px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <div className="flex justify-center mb-6 sm:mb-8">
@@ -122,7 +119,8 @@ export default function DigitalInfrastructurePage() {
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mt-10"
             >
@@ -228,7 +226,7 @@ export default function DigitalInfrastructurePage() {
       <section className="relative bg-dark-900 section-padding">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid opacity-20" />
-          <div className="absolute right-0 top-1/3 h-[500px] w-[500px] rounded-full bg-primary-500/5 blur-[150px]" />
+          <div className="absolute right-0 top-1/3 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-primary-500/5 blur-[150px]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl">

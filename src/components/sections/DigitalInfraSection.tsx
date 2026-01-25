@@ -1,12 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Cpu, Globe, Shield, Zap } from "lucide-react";
 
 export function DigitalInfraSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const pillars = [
     {
@@ -33,16 +31,15 @@ export function DigitalInfraSection() {
 
   return (
     <section
-      ref={sectionRef}
       className="relative overflow-hidden bg-dark-800 section-padding"
     >
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 via-dark-800 to-accent-900/10" />
-        
+
         {/* Animated Grid Lines */}
         <div className="absolute inset-0 bg-grid opacity-30" />
-        
+
         {/* Glowing orbs */}
         <div className="absolute left-1/4 top-1/4 h-2 w-2 rounded-full bg-primary-400 animate-pulse" />
         <div className="absolute right-1/3 top-1/3 h-1.5 w-1.5 rounded-full bg-accent-400 animate-pulse animation-delay-200" />
@@ -54,7 +51,8 @@ export function DigitalInfraSection() {
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span className="text-sm font-medium uppercase tracking-wider text-primary-400">
@@ -82,7 +80,8 @@ export function DigitalInfraSection() {
             {/* Visual Element */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mt-10 glass rounded-2xl p-6"
             >
@@ -109,7 +108,8 @@ export function DigitalInfraSection() {
           {/* Right Column - Pillars */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="grid gap-4 sm:grid-cols-2"
           >
@@ -117,13 +117,14 @@ export function DigitalInfraSection() {
               <motion.div
                 key={pillar.title}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
                 className="group relative overflow-hidden rounded-2xl border border-white/5 bg-dark-700/30 p-6 transition-all duration-300 hover:border-primary-500/30 hover:bg-dark-700/50"
               >
                 {/* Gradient line on top */}
                 <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 opacity-0 transition-opacity group-hover:opacity-100" />
-                
+
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-500/10 text-primary-400 transition-all group-hover:bg-primary-500 group-hover:text-white">
                   <pillar.icon className="h-6 w-6" />
                 </div>
