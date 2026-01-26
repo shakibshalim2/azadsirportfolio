@@ -74,7 +74,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-dark-900"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-dark-900 pt-20 sm:pt-24 lg:pt-32"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
@@ -89,72 +89,100 @@ export function HeroSection() {
         <div className="float-element absolute bottom-[25%] right-[15%] h-8 w-8 sm:h-12 sm:w-12 rotate-12 rounded-md sm:rounded-lg border border-gold-500/20 bg-gold-500/5 hidden sm:block" />
       </div>
 
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 text-center lg:px-8"
-      >
-        <div ref={textRef}>
-          {/* Eyebrow */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-6 sm:mb-8 flex justify-center"
+            style={{ y, opacity }}
+            className="text-center lg:text-left"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-500/30 bg-primary-500/10 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-primary-400">
-              <span className="h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full bg-primary-400 animate-pulse" />
-              <span className="hidden sm:inline">Entrepreneur | Ecosystem Builder | Digital Strategist</span>
-              <span className="sm:hidden">Entrepreneur & Ecosystem Builder</span>
-            </span>
+            <div ref={textRef}>
+              {/* Eyebrow */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-6 sm:mb-8 flex justify-center lg:justify-start"
+              >
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary-500/30 bg-primary-500/10 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-primary-400">
+                  <span className="h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full bg-primary-400 animate-pulse" />
+                  <span className="hidden sm:inline">Entrepreneur | Ecosystem Builder | Digital Strategist</span>
+                  <span className="sm:hidden">Entrepreneur & Ecosystem Builder</span>
+                </span>
+              </motion.div>
+
+              {/* Main Headline */}
+              <h1 className="overflow-hidden">
+                <span className="hero-line block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white leading-tight">
+                  Designing the Future
+                </span>
+                <span className="hero-line block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight">
+                  <span className="text-gradient">of Bangladesh</span>
+                </span>
+              </h1>
+
+              {/* Subheadline */}
+              <div className="hero-subtext mt-6 sm:mt-8">
+                <p className="mx-auto lg:mx-0 max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-white/60">
+                  Through{" "}
+                  <span className="text-white">Business</span> •{" "}
+                  <span className="text-white">Digital Infrastructure</span> •{" "}
+                  <span className="text-white">Human Capital</span>
+                </p>
+                <p className="mx-auto lg:mx-0 mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base md:text-lg text-white/40">
+                  Not just building companies — building systems that move a nation forward.
+                </p>
+              </div>
+
+              {/* CTAs */}
+              <div className="hero-cta mt-8 sm:mt-12 flex flex-col items-center lg:items-start justify-center lg:justify-start gap-3 sm:gap-4 sm:flex-row">
+                <Link href="/vision">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="btn-primary flex items-center gap-2 w-full sm:w-auto justify-center"
+                  >
+                    Explore the Vision
+                    <ArrowRight className="h-4 w-4" />
+                  </motion.button>
+                </Link>
+                <Link href="/about">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="btn-outline w-full sm:w-auto"
+                  >
+                    Learn About Me
+                  </motion.button>
+                </Link>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Main Headline */}
-          <h1 className="overflow-hidden">
-            <span className="hero-line block text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-display font-bold text-white">
-              Designing the Future
-            </span>
-            <span className="hero-line block text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-display font-bold">
-              <span className="text-gradient">of Bangladesh</span>
-            </span>
-          </h1>
-
-          {/* Subheadline */}
-          <div className="hero-subtext mt-6 sm:mt-8">
-            <p className="mx-auto max-w-3xl text-base sm:text-lg md:text-xl lg:text-2xl text-white/60">
-              Through{" "}
-              <span className="text-white">Business</span> •{" "}
-              <span className="text-white">Digital Infrastructure</span> •{" "}
-              <span className="text-white">Human Capital</span>
-            </p>
-            <p className="mx-auto mt-3 sm:mt-4 max-w-2xl text-sm sm:text-base md:text-lg text-white/40">
-              Not just building companies — building systems that move a nation forward.
-            </p>
-          </div>
-
-          {/* CTAs */}
-          <div className="hero-cta mt-8 sm:mt-12 flex flex-col items-center justify-center gap-3 sm:gap-4 sm:flex-row">
-            <Link href="/vision">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-primary flex items-center gap-2 w-full sm:w-auto justify-center"
-              >
-                Explore the Vision
-                <ArrowRight className="h-4 w-4" />
-              </motion.button>
-            </Link>
-            <Link href="/about">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="btn-outline w-full sm:w-auto"
-              >
-                Learn About Me
-              </motion.button>
-            </Link>
-          </div>
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="relative lg:block"
+          >
+            <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-accent-500/20 rounded-2xl blur-2xl opacity-60" />
+              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
+                {/* Assuming using next/image, need to make sure Image import is there, which it wasn't in original file, only in snippet I might have missed? No, original had no Image import. */}
+                {/* I need to add Image import. */}
+                <img
+                  src="/hero-image.png"
+                  alt="Shamim Azad Vision"
+                  className="h-full w-full object-cover"
+                />
+                {/* Overlay for integration */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 to-transparent" />
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll Indicator */}
       <motion.div

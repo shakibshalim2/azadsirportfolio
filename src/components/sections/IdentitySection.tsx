@@ -35,7 +35,7 @@ export function IdentitySection() {
             <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl sm:rounded-3xl bg-dark-800">
               {/* Profile Image */}
               <Image
-                src="/identity-profile.png"
+                src="/shamim-azad-profile.png"
                 alt="Shamim Azad"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
