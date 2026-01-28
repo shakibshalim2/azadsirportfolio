@@ -94,7 +94,7 @@ export function HeroSection() {
           {/* Text Content */}
           <motion.div
             style={{ y, opacity }}
-            className="text-center lg:text-left"
+            className="text-center lg:text-left lg:order-2"
           >
             <div ref={textRef}>
               {/* Eyebrow */}
@@ -164,20 +164,26 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative lg:block"
+            className="relative lg:block lg:order-1"
           >
             <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/20 to-accent-500/20 rounded-2xl blur-2xl opacity-60" />
-              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
-                {/* Assuming using next/image, need to make sure Image import is there, which it wasn't in original file, only in snippet I might have missed? No, original had no Image import. */}
-                {/* I need to add Image import. */}
+              <div
+                className="relative h-full w-full overflow-hidden rounded-2xl border border-black/30 bg-gradient-to-b from-dark-900/5 to-transparent backdrop-blur-sm shadow-lg"
+                style={{
+                  WebkitMaskImage:
+                    'radial-gradient(closest-side, rgba(0,0,0,1), rgba(0,0,0,0.85) 65%, rgba(0,0,0,0))',
+                  maskImage:
+                    'radial-gradient(closest-side, rgba(0,0,0,1), rgba(0,0,0,0.85) 65%, rgba(0,0,0,0))',
+                }}
+              >
                 <img
                   src="/hero-image.png"
                   alt="Shamim Azad Vision"
                   className="h-full w-full object-cover"
                 />
-                {/* Overlay for integration */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 to-transparent" />
+                {/* Subtle dark overlay that mixes with the black page background to fade borders */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/70 to-transparent mix-blend-multiply pointer-events-none" />
               </div>
             </div>
           </motion.div>
