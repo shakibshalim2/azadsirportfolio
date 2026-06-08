@@ -112,12 +112,16 @@ export function HeroSection() {
               </motion.div>
 
               {/* Main Headline */}
-              <h1 className="overflow-hidden">
-                <span className="hero-line block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white leading-tight">
-                  Designing the Future
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-none">
+                <span className="block overflow-hidden pb-2 -mb-2">
+                  <span className="hero-line block text-white leading-tight">
+                    Designing the Future
+                  </span>
                 </span>
-                <span className="hero-line block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight">
-                  <span className="text-gradient">of Bangladesh</span>
+                <span className="block overflow-hidden pb-4 -mb-4">
+                  <span className="hero-line block leading-tight">
+                    <span className="text-gradient">of Bangladesh</span>
+                  </span>
                 </span>
               </h1>
 

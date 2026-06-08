@@ -61,10 +61,24 @@ body {
 @layer components {
   .text-gradient {
     @apply bg-gradient-to-r from-primary-400 via-primary-300 to-accent-400 bg-clip-text text-transparent;
+    display: inline-block;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+    padding-right: 0.05em;
+    margin-right: -0.05em;
+    padding-left: 0.05em;
+    margin-left: -0.05em;
   }
 
   .text-gradient-gold {
     @apply bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 bg-clip-text text-transparent;
+    display: inline-block;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+    padding-right: 0.05em;
+    margin-right: -0.05em;
+    padding-left: 0.05em;
+    margin-left: -0.05em;
   }
 
   .glass {
