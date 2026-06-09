@@ -114,18 +114,18 @@ export function Footer() {
                 {/* Contact Info */}
                 <div className="mt-6 sm:mt-8 space-y-2 sm:space-y-3">
                   <a
-                    href="mailto:contact@shamimazad.com"
+                    href="mailto:hello@shamimazad.com"
                     className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-white/60 transition-colors hover:text-white"
                   >
                     <Mail className="h-4 w-4" />
-                    <span>contact@shamimazad.com</span>
+                    <span>hello@shamimazad.com</span>
                   </a>
                   <a
-                    href="tel:+8801700000000"
+                    href="tel:+8801537056343"
                     className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-white/60 transition-colors hover:text-white"
                   >
                     <Phone className="h-4 w-4" />
-                    <span>+880 1700 000 000</span>
+                    <span>+880 1537 056 343</span>
                   </a>
                   <div className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-white/60">
                     <MapPin className="h-4 w-4" />

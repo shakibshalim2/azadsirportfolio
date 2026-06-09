@@ -62,8 +62,14 @@ export default function ContactPage() {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@shamim-azad.com",
+      value: "hello@shamimazad.com",
       subtext: "For professional inquiries",
+    },
+    {
+      icon: Phone,
+      label: "Phone & WhatsApp",
+      value: "+880 1537 056 343",
+      subtext: "Available for business calls & texts",
     },
     {
       icon: Clock,
@@ -77,7 +83,7 @@ export default function ContactPage() {
     { icon: Linkedin, label: "LinkedIn", href: "#", color: "hover:bg-blue-600" },
     { icon: Youtube, label: "YouTube", href: "#", color: "hover:bg-red-600" },
     { icon: Twitter, label: "Twitter", href: "#", color: "hover:bg-sky-500" },
-    { icon: MessageCircle, label: "WhatsApp", href: "#", color: "hover:bg-green-600" },
+    { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/8801537056343", color: "hover:bg-green-600" },
   ];
 
   const inquiryTypes = [
